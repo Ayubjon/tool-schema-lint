@@ -67,6 +67,26 @@ test('flags an empty enum', () => {
   assert.ok(rules(findings).includes('empty-enum'));
 });
 
+test('flags an array with no items schema', () => {
+  const findings = run({
+    type: 'object',
+    description: 'root',
+    properties: { tags: { type: 'array', description: 'tags' } },
+  });
+  assert.ok(rules(findings).includes('array-without-items'));
+});
+
+test('flags an object type that declares no properties', () => {
+  const findings = run({
+    type: 'object',
+    description: 'root',
+    properties: {
+      meta: { type: 'object', description: 'meta' },
+    },
+  });
+  assert.ok(rules(findings).includes('object-without-properties'));
+});
+
 test('a clean schema produces no error-level findings', () => {
   const findings = run({
     type: 'object',
