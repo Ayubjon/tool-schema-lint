@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="540" viewBox="0 0 860 540" font-family="'SF Mono','DejaVu Sans Mono',Menlo,Consolas,monospace">
+  <defs>
+    <style>
+      .bg{fill:#0d1117}
+      .bar{fill:#161b22}
+      .t{font-size:14px;fill:#c9d1d9}
+      .dim{fill:#6e7681}
+      .err{fill:#f85149}
+      .warn{fill:#d29922}
+      .ok{fill:#3fb950}
+      .blue{fill:#58a6ff}
+      .prompt{fill:#3fb950}
+      .b{font-weight:700}
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="860" height="540" rx="10"/>
+  <rect class="bar" x="0" y="0" width="860" height="34" rx="10"/>
+  <rect class="bar" x="0" y="20" width="860" height="14"/>
+  <circle cx="20" cy="17" r="6" fill="#ff5f56"/>
+  <circle cx="40" cy="17" r="6" fill="#ffbd2e"/>
+  <circle cx="60" cy="17" r="6" fill="#27c93f"/>
+  <text class="t dim" x="430" y="22" text-anchor="middle" font-size="12">tool-schema-lint</text>
+
+  <text class="t" x="18" y="62">
+    <tspan class="prompt b">$</tspan>
+    <tspan fill="#c9d1d9"> tool-schema-lint weather_tool.json --provider all</tspan>
+  </text>
+
+  <text class="t" x="18" y="92"><tspan class="b">get_weather</tspan> <tspan class="dim">[anthropic]</tspan></text>
+
+  <text class="t" x="18" y="116"><tspan class="err">  ✖</tspan> <tspan class="dim">at &lt;root&gt; (openai)</tspan></text>
+  <text class="t" x="18" y="134" fill="#c9d1d9">    Strict mode requires every object to set "additionalProperties": false. <tspan class="dim">openai-additional-properties</tspan></text>
+
+  <text class="t" x="18" y="160"><tspan class="err">  ✖</tspan> <tspan class="dim">at &lt;root&gt; (openai)</tspan></text>
+  <text class="t" x="18" y="178" fill="#c9d1d9">    Every property must be in "required". Missing: when, units. <tspan class="dim">openai-all-required</tspan></text>
+
+  <text class="t" x="18" y="204"><tspan class="err">  ✖</tspan> <tspan class="dim">at properties/units (gemini)</tspan></text>
+  <text class="t" x="18" y="222" fill="#c9d1d9">    Gemini expresses nullability with "nullable": true, not a "null" type. <tspan class="dim">gemini-nullable-type</tspan></text>
+
+  <text class="t" x="18" y="248"><tspan class="warn">  ⚠</tspan> <tspan class="dim">at properties/city</tspan></text>
+  <text class="t" x="18" y="266" fill="#c9d1d9">    Property "city" has no description; descriptions improve argument quality. <tspan class="dim">missing-property-description</tspan></text>
+
+  <text class="t" x="18" y="292"><tspan class="warn">  ⚠</tspan> <tspan class="dim">at &lt;root&gt; (anthropic)</tspan></text>
+  <text class="t" x="18" y="310" fill="#c9d1d9">    Tool description is only 16 characters. Claude leans on detailed descriptions. <tspan class="dim">anthropic-thin-description</tspan></text>
+
+  <text class="t" x="18" y="336"><tspan class="warn">  ⚠</tspan> <tspan class="dim">at properties/when (gemini)</tspan></text>
+  <text class="t" x="18" y="354" fill="#c9d1d9">    Gemini ignores format "email" for type "string". Supported: enum, date-time. <tspan class="dim">gemini-unsupported-format</tspan></text>
+
+  <text class="t" x="18" y="396"><tspan class="err b">3 errors</tspan><tspan class="dim">, </tspan><tspan class="warn b">5 warnings</tspan><tspan class="dim">, 0 info</tspan></text>
+
+  <line x1="18" y1="420" x2="842" y2="420" stroke="#21262d" stroke-width="1"/>
+
+  <text class="t" x="18" y="450">
+    <tspan class="prompt b">$</tspan>
+    <tspan fill="#c9d1d9"> tool-schema-lint clean_tool.json --provider openai</tspan>
+  </text>
+  <text class="t" x="18" y="478"><tspan class="b">search_products</tspan> <tspan class="dim">[openai]</tspan></text>
+  <text class="t" x="18" y="500"><tspan class="ok">  ✓ no issues</tspan></text>
+  <text class="t" x="18" y="524"><tspan class="ok b">✓ All clean — 0 errors, 0 warnings.</tspan></text>
+</svg>
