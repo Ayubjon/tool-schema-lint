@@ -124,6 +124,47 @@ export const commonRules = [
     return out;
   },
 
+  function arrayWithoutItems(tool) {
+    const out = [];
+    for (const { node, path } of walk(tool.schema)) {
+      const isArray = node.type === 'array' || (Array.isArray(node.type) && node.type.includes('array'));
+      if (isArray && node.items === undefined && node.prefixItems === undefined) {
+        out.push(
+          finding(
+            SEVERITY.WARNING,
+            'array-without-items',
+            path,
+            'Array has no "items" schema, so the model has no shape for its elements.'
+          )
+        );
+      }
+    }
+    return out;
+  },
+
+  function objectWithoutProperties(tool) {
+    const out = [];
+    for (const { node, path } of walk(tool.schema)) {
+      const isObject = node.type === 'object' || (Array.isArray(node.type) && node.type.includes('object'));
+      const hasShape =
+        (node.properties && Object.keys(node.properties).length > 0) ||
+        node.additionalProperties !== undefined ||
+        node.patternProperties !== undefined ||
+        node.$ref !== undefined;
+      if (isObject && !hasShape) {
+        out.push(
+          finding(
+            SEVERITY.INFO,
+            'object-without-properties',
+            path,
+            'Object declares no "properties"; the model has no fields to fill in.'
+          )
+        );
+      }
+    }
+    return out;
+  },
+
   function emptyEnum(tool) {
     const out = [];
     for (const { node, path } of walk(tool.schema)) {
