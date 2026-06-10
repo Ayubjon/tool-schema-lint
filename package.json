@@ -1,0 +1,37 @@
+{
+  "name": "tool-schema-lint",
+  "version": "0.1.0",
+  "description": "Lint your LLM function-calling / tool-use JSON Schemas for OpenAI, Anthropic, and Gemini compatibility before you ship.",
+  "type": "module",
+  "bin": {
+    "tool-schema-lint": "bin/cli.js"
+  },
+  "exports": {
+    ".": "./index.js"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "llm",
+    "json-schema",
+    "function-calling",
+    "tool-use",
+    "openai",
+    "anthropic",
+    "gemini",
+    "linter",
+    "agents",
+    "validation"
+  ],
+  "license": "MIT",
+  "author": "Ayubjon",
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "index.js",
+    "src/",
+    "bin/"
+  ]
+}
