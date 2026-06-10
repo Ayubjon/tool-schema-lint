@@ -1,0 +1,22 @@
+{
+  "type": "function",
+  "function": {
+    "name": "search_products",
+    "description": "Search the product catalog and return matching items for a query.",
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Free-text search query, e.g. 'wireless headphones'."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Maximum number of results to return."
+        }
+      },
+      "required": ["query", "limit"]
+    }
+  }
+}

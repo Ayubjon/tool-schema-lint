@@ -1,0 +1,13 @@
+{
+  "name": "get_weather",
+  "description": "Get the weather.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "city": { "type": "string" },
+      "when": { "type": "string", "format": "email" },
+      "units": { "type": ["string", "null"] }
+    },
+    "required": ["city"]
+  }
+}
