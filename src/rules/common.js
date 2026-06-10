@@ -28,13 +28,18 @@ function hasCombinator(node) {
  */
 export const commonRules = [
   function missingDescription(tool) {
-    if (!tool.schema || typeof tool.schema.description !== 'string' || !tool.schema.description.trim()) {
+    // A tool's description may live on the tool object (Anthropic/OpenAI tool
+    // definitions) or on the schema itself (raw JSON Schema). Either satisfies.
+    const toolDesc = typeof tool.description === 'string' && tool.description.trim();
+    const schemaDesc =
+      tool.schema && typeof tool.schema.description === 'string' && tool.schema.description.trim();
+    if (!toolDesc && !schemaDesc) {
       return [
         finding(
           SEVERITY.WARNING,
           'missing-description',
           [],
-          'Tool schema has no top-level description. Models rely on it to decide when to call the tool.'
+          'Tool has no description. Models rely on it to decide when to call the tool.'
         ),
       ];
     }
